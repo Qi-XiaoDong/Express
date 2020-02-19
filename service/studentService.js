@@ -7,16 +7,27 @@ function queryAllStudents (success) {
     studentDao.queryAllStudents (success);
 }
 
-function insetStudent (stu_num,name,age,stu_class,pwd,success) {
-    studentDao.insetStudent(stu_num,name,age,stu_class,pwd,success);
+
+/**
+ * 插入学生
+ * @param {*} stuNum 
+ * @param {*} stuName 姓名
+ * @param {*} stuAge 年龄
+ * @param {*} stuClass 班级
+ * @param {*} stuPwd 密码
+ * @param {*} success 回调函数
+ */
+function insertStudent (stuNum, stuName, stuAge, stuClass, stuPwd, success) {
+    studentDao.insertStudent(stuNum, stuName, stuAge, stuClass, stuPwd, success);
 }
 
 function queryStudentByStuNum ( stu_num, success ) {
     studentDao.queryStudentByStuNum (stu_num ,success);
 }
+
 // 导出
 module.exports = {
     'queryAllStudents' : queryAllStudents,
-    'insetStudent' : insetStudent,
+    'insertStudent' : insertStudent,
     'queryStudentByStuNum' : queryStudentByStuNum,
 }
