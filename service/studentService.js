@@ -21,6 +21,11 @@ function insertStudent (stuNum, stuName, stuAge, stuClass, stuPwd, success) {
     studentDao.insertStudent(stuNum, stuName, stuAge, stuClass, stuPwd, success);
 }
 
+/**
+ * 根据学号查询学生
+ * @param {*} stu_num  学号
+ * @param {*} success 
+ */
 function queryStudentByStuNum ( stu_num, success ) {
     studentDao.queryStudentByStuNum (stu_num ,success);
 }

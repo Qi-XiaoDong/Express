@@ -14,7 +14,7 @@ var path = new Map();    // 存储此文件的请求处理程序
 function queryAllStudent (request, response ) {
   // 调用数据库
   studentServe.queryAllStudents(function (result) {
-    response.writeHead(200) // 返回状态码;
+    response.writeHead(200,{"Content-Type": "text/html; charset=utf-8"});
     response.write(JSON.stringify(result));
     response.end(); // 断开响应传输
   })
@@ -41,6 +41,33 @@ function insertStudent (request, response) {
   });
 }
 path.set("/api/insertStudent", insertStudent);
+
+
+/**
+ * 登录请求
+ * @param {*} request 
+ * @param {*} response 
+ */
+function login (request, response) {
+  var params = url.parse(request.url, true).query;   // 解析登录url
+
+  var {stu_num, pwd} = params;   // 解构
+
+  studentServe.queryStudentByStuNum(stu_num,function (result) {  // 查询用户
+    if (result.length > 0 && pwd === result[0].pwd) {
+      
+       response.cookie('id',result[0].id);   // 注入cookie
+       
+       response.redirect('/api/queryAllStudent');  //重定向
+
+      response.end();  // 响应结束
+    }else{
+      
+      response.redirect('loginError.html');   // 重定向到错误页
+    }
+  });
+}
+path.set("/login", login);
 
 
 module.exports.path = path;
