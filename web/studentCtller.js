@@ -19,7 +19,7 @@ function queryAllStudent (request, response ) {
     response.end(); // 断开响应传输
   })
 }
-path.set("/queryAllStudent", queryAllStudent);
+path.set("/api/queryAllStudent", queryAllStudent);
 
 /**
  * 上传数据
@@ -29,7 +29,7 @@ path.set("/queryAllStudent", queryAllStudent);
 function insertStudent (request, response) {
   // 解析参数得到对象形式
   var params = url.parse(request.url, true).query;
-  
+
   // 解构参数
   var {stuNum, stuName, stuAge, stuClass, stuPwd} = params;
  
@@ -40,7 +40,7 @@ function insertStudent (request, response) {
     response.end()
   });
 }
-path.set("/insertStudent", insertStudent);
+path.set("/api/insertStudent", insertStudent);
 
 
 module.exports.path = path;

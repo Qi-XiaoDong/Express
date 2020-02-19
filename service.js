@@ -13,6 +13,31 @@ var app = new express();                  // 定义服务器对象
 
 app.use(express.static("./" + globalConfig["page_path"]));        // 设置静态文件路径
 
+/**
+ * 拦截器：当访问的接口带有api字段先进行拦截
+ */
+app.get("/api/*", function (requset, response, next) {
+
+ /*  if (满足条件) {
+    // next() 
+  } else {
+    // 进行拦截 跳转页面
+  } */
+
+ /*  console.log("你已经被拦截")
+  response.writeHead(404);
+  response.write("<html><body>not found 404</body></html>");
+  response.end(); */
+
+ /*  console.log("你还是被拦截了")
+  response.redirect("/login.html");
+  response.end() */
+
+
+ /*  console.log("拦不住")
+  next(); */
+})
+
 // app.get("/queryAllStudent", studentCtller.path.get("/queryAllStudent"))  // 访问 /queryAllStudent 时处理程序 【2】
 
 loader.init(app)  // 【简化2】
