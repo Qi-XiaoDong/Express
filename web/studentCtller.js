@@ -2,6 +2,8 @@
 
 var url = require("url");   // 解析参数
 
+var fs = require("fs");
+
 var studentServe = require("../service/studentService");
 
 var path = new Map();    // 存储此文件的请求处理程序
@@ -69,5 +71,20 @@ function login (request, response) {
 }
 path.set("/login", login);
 
+/**下载图片 */
+function getpic (request, response) {
+  var params = url.parse(request.url, true).query;
+  console.log(params)
+  var data = fs.readFileSync("./" + params.path);
+  try{
+    response.writeHead(200);
+    response.write(data);
+    response.end();
+  } catch (e){
+    response.writeHead(404);
+    response.end();
+  }
+}
+path.set("/getpic", getpic);
 
 module.exports.path = path;
